@@ -1,0 +1,434 @@
+// ------------ Simple styles ------------
+
+
+// @include reset;
+@mixin reset {
+  margin: 0;
+  padding: 0;
+}
+
+
+@mixin margin-auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+@mixin spacer {
+  padding: 0 12px 0 10px;
+}
+
+
+// ------------ Components ------------
+
+
+@mixin underline_link {
+  font-family: $font-family-accent;
+  font-weight: $font-weight-500;
+  position: relative;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &:after {
+    content: '';
+    background-color: $color-blue;
+    @include margin-auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    //width: 100%;
+
+    @include media-netbook-mx {
+      height: 3px;
+    }
+    @include media-netbook-mn {
+      height: 5px;
+    }
+  }
+
+  &:not(.active):hover {
+    &:after {
+      width: 100%;
+
+      // Animation
+      @include x-animation(widthScale .25s $transition-timing-function both);
+      animation-delay: .15s;
+    }
+  }
+
+  &.active {
+    &:after {
+      width: 100%;
+    }
+  }
+}
+
+
+@mixin bg-blue {
+  content: '';
+  background-color: $color-blue;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100vw;
+}
+
+
+@mixin bg-grey {
+  content: '';
+  background-color: $color-grey-light;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100vw;
+}
+
+
+@mixin title {
+  font-family: $font-family-accent;
+  @include reset;
+  @include transition(all $transition-duration $transition-timing-function);
+}
+
+@mixin title_1 {
+  @include title;
+  font-size: clamp(40px, calc(29px + 4vw), 96px);
+  font-weight: $font-weight-400;
+  line-height: 1.01; //98px;
+}
+
+@mixin title_2 {
+  @include title;
+  //font-size: clamp(30px, calc(13px + 5vw), 72px);
+  font-size: clamp(32px, calc(13px + 5vw), 72px);
+  font-weight: $font-weight-400;
+
+  @include media-tablet-v-mx {
+    line-height: 1.1;
+  }
+  @include media-tablet-v-mn {
+    line-height: 1.195; //86px;
+  }
+}
+
+@mixin title_3 {
+  @include title;
+  //font-size: clamp(28px, calc(12px + 3vw), 40px);
+  font-size: clamp(26px, calc(12px + 3vw), 40px);
+  font-weight: $font-weight-400;
+  line-height: 1.2; //48px;
+}
+
+@mixin title_4 {
+  @include title;
+  font-weight: $font-weight-400;
+  line-height: 1.315; //42px;
+
+  @include media-tablet-v-mx {
+    font-size: 1.5rem; //24px;
+  }
+  @include media-tablet-v-mn {
+    //font-size: clamp(24px, calc(10px + 2vw), 32px);
+    font-size: clamp(22px, calc(10px + 2vw), 32px);
+  }
+}
+
+@mixin title_5 {
+  @include title;
+  font-weight: $font-weight-400;
+  line-height: 1.33; //32px;
+
+  @include media-tablet-v-mx {
+    font-size: 1.2rem; //19px;
+  }
+  @include media-tablet-v-mn {
+    font-size: 1.2rem; //24px;
+  }
+}
+
+@mixin title_6 {
+  @include title;
+  font-weight: $font-weight-400;
+  line-height: 1.45; //26px;
+
+  @include media-tablet-v-mx {
+    font-size: 1rem; //16px;
+  }
+  @include media-tablet-v-mn {
+    font-size: 0.9rem; //18px;
+  }
+}
+
+@mixin title_7 {
+  @include title;
+  font-weight: $font-weight-700;
+  letter-spacing: 1px;
+  line-height: 1.45; //26px;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  @include media-tablet-v-mx {
+    font-size: 1rem; //16px;
+  }
+  @include media-tablet-v-mn {
+    font-size: 0.9rem; //18px;
+  }
+}
+
+
+@mixin slogan {
+  line-height: 1.59;
+  margin: 0;
+
+  @include media-tablet-v-mn {
+    font-size: clamp(0.8rem, calc(7px + 1vw), 24px);
+  }
+}
+
+
+@mixin numeric_list {
+  color: $color-blue;
+  font-family: $font-family-accent;
+  font-size: clamp(24px, calc(16px + 2vw), 48px);
+  font-weight: $font-weight-400;
+  line-height: 1.55; //56px;
+  margin: 0;
+  white-space: nowrap;
+  @include transition(all $transition-duration $transition-timing-function);
+}
+
+
+@mixin text_link {
+  &:link,
+  &:visited {
+    text-decoration: underline;
+  }
+
+  &:focus,
+  &:active,
+  &:hover {
+    color: $color-blue;
+    text-decoration: none;
+  }
+}
+
+
+@mixin hot {
+  background-color: $color-orange;
+  color: #fff;
+  @include title_7;
+  height: fit-content;
+  max-width: fit-content;
+
+  @include media-laptop-mx {
+    padding: 5px 10px;
+  }
+  @include media-laptop-mn {
+    padding: 10px 19px;
+  }
+}
+
+
+@mixin form-img-grid {
+  @include media-netbook-laptop {
+    display: grid;
+    grid-template-columns: 330px 1fr 1fr;
+    grid-template-areas: "head form form";
+
+    .section__title, .section__img-outer + * {
+      grid-area: form;
+    }
+  }
+}
+
+
+@mixin form-grid {
+  @include media-laptop-mn {
+    display: grid;
+    grid-template-columns: 407px 1fr;
+  }
+}
+
+
+@mixin form-alignment {
+  @include media-phablet-mn {
+    border-top: 10vh solid #fff;
+    border-bottom: 10vh solid $color-grey-light;
+    position: relative;
+
+    &:after {
+      @include bg-grey;
+      border-bottom: 10vh solid $color-grey-light;
+      right: -100vw;
+    }
+  }
+}
+
+
+@mixin form-btn_right {
+  @include media-phablet-mn {
+    min-width: calc(50% - 2.5vw);
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  @include media-netbook-mn {
+    min-width: 44%;
+  }
+  @include media-desktop-mn {
+    min-width: 380px;
+  }
+}
+
+
+
+// ------------ Prefixes for older browsers ------------
+
+
+// @include x-appearance(button);
+@mixin x-appearance ($value) {
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+  appearance: $value;
+}
+
+
+// @include x-animation(jump 1s ease-out);
+@mixin x-animation ($values) {
+  -webkit-animation: $values;
+  animation: $values;
+}
+
+
+// @include x-keyframes(jump) {
+// from { top: 0; }
+// to { top: -10px; }
+// }
+@mixin x-keyframes ($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+
+// @include background-size(100% auto);
+@mixin background-size ($values...) {
+  -webkit-background-size: $values; // For Android 2.x
+  background-size: $values;
+}
+
+
+// @include b-radius(0);
+@mixin b-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
+// @include box-sizing;
+@mixin box-sizing ($type: border-box) {
+  -webkit-box-sizing: $type; // Safari <= 5.0, Chrome <= 9.0, iOS Safari 3.2 - 4.3 and Android 2.1 - 3.0
+  -moz-box-sizing: $type; // FF 2.0 - 28.0
+  box-sizing: $type; // IE 8, Opera 9.5+
+}
+
+
+// @include box-shadow(2px 2px 2px rgba(#ccc, .8), -2px -2px 2px rgba(#ccc, 0.8));
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+
+// Calc
+@mixin calc($property, $value) {
+  #{$property}: calc(#{$value});
+  #{$property}: -webkit-calc(#{$value});
+}
+
+
+// @include x-placeholder {
+//  color: #bada55;
+//  font-weight: bold;
+// }
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content // Chrome, Safari, Opera
+  }
+  &::-moz-placeholder {
+    @content // Firefox 19+
+  }
+  &:-ms-input-placeholder {
+    @content // IE 10+
+  }
+}
+
+
+// Image Rendering
+@mixin image-rendering ($mode: auto) {
+
+  @if ($mode == crisp-edges) {
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  @else {
+    image-rendering: $mode;
+  }
+}
+
+
+// @include filter(blur(8px));
+@mixin filter($property) {
+  -webkit-filter: $property;
+  filter: $property;
+}
+
+
+// @include transform(rotate(30deg));
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+
+// @include user-select(none);
+//@mixin user-select($value) {
+//  -webkit-user-select: $value;
+//  -moz-user-select: $value;
+//  -ms-user-select: $value;
+//  user-select: $value;
+//}
+
+@mixin user-select($select) {
+  @each $pre in -webkit-, -moz-, -ms-, -o- {
+    #{$pre + user-select}: #{$select};
+  }
+  #{user-select}: #{$select};
+}
+
+
+// @include transition(all $transition-duration $transition-timing-function);
+@mixin transition($x...){
+  -webkit-transition: $x;
+  -moz-transition: $x;
+  -o-transition: $x;
+  transition: $x;
+}
+
+
+// Sticky
+@mixin sticky() {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+}

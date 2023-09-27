@@ -19,10 +19,33 @@ import RegistrationForm from './components/RegistrationForm.vue'
 }
 </style>
 
-<style>
-@media (min-width: 1024px) {
-    #app {
-      grid-template-columns: 1fr !important;
+<style lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Condensed&display=swap');
+
+  :root {
+    --font-family-base: 'Open Sans', 'Arial', sans-serif;
+    --font-family-accent: 'Work Sans', 'Arial', sans-serif;
+    --font-size-base: 16px;
+  }
+
+  html {
+    font-size: var(--font-size-base);
+  }
+
+  html,
+  body {
+    font-family: var(--font-family-base);
+  }
+
+  a {
+    text-decoration: none;
+    color: #1c75bc;
+    transition: all 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+  }
+
+  @media (hover: hover) {
+    a:hover {
+      text-decoration: underline;
     }
-}
+  }
 </style>
