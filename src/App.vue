@@ -34,6 +34,7 @@ import RegistrationForm from './components/RegistrationForm.vue'
 
   html,
   body {
+    background-color: #fff;
     font-family: var(--font-family-base);
   }
 

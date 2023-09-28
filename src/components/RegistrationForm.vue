@@ -217,6 +217,7 @@
   }
 
   input[type="checkbox"] {
+    background-color: #fff;
     border: 1px solid $color-grey-medium;
     cursor: pointer;
     height: 30px;
