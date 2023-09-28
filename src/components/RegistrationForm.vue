@@ -107,7 +107,6 @@
   }
 
   %form__label_active {
-    opacity: .25;
     padding-left: 14px;
     @include transform(translateY(1.15rem) scale(0.7));
   }
@@ -163,6 +162,7 @@
     background-color: #fff;
     border: 0 none;
     border-bottom: 1px solid $color-grey-medium;
+    color: $font-color-base;
     @include box-sizing;
     display: block;
     font-size: 1rem;
@@ -188,8 +188,8 @@
   }
 
   .form__label {
+    color: darken($color-grey-medium, 20%);
     cursor: text;
-    opacity: .4;
     padding-left: 8px;
     pointer-events: none;
     transform-origin: left top;
@@ -245,14 +245,15 @@
   }
 
   .form__checkbox-txt {
+    color: $font-color-base;
     font-size: 0.8rem;
   }
 
 
   /* Button */
   %hover {
-    background-color: $color-blue-dark;
-    border: 1px solid $color-blue-dark;
+    background-color: darken($color-green,5%);
+    border: 1px solid darken($color-green,5%);
     @include box-shadow(none);
     color: $color-orange;
     text-decoration: none;
@@ -283,7 +284,7 @@
     }
     @include media-tablet-h-mn {
       font-size: 1.25rem;
-      min-height: 58px;
+      min-height: 54px;
     }
 
     &:focus {
